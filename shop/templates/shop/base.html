@@ -1,0 +1,37 @@
+{% load static %}
+   <!DOCTYPE html>
+   <html>
+   <head>
+     <meta charset="utf-8" />
+     <title>{% block title %}Mi tienda{% endblock %}</title>
+     <link href="{% static "css/base.css" %}" rel="stylesheet">
+     <link href="{% static "css/base2.css" %}" rel="stylesheet">
+     
+   </head>
+   <body>
+     <div id="header" style="margin-top:5">
+       <a href="/" class="logo">Restaurante Julia - Cash & Diplo</a>
+     </div>
+     <div id="subheader">
+      <div style="color:white">
+       <div class="cart">
+     {% with total_items=cart|length %}
+       {% if cart|length > 0 %}
+         Tu cesta:
+         <a href="{% url "cart:cart_detail" %}" style="color:white">
+           
+           {{ cart.get_total_price }} €
+         </a>
+       {% else %}
+         Tu cesta esta vacía.
+       {% endif %}
+     {% endwith %}
+</div>
+</div>
+     </div>
+     <div id="content">
+       {% block content %}
+       {% endblock %}
+     </div>
+   </body>
+   </html>
